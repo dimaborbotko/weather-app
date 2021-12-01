@@ -8,10 +8,6 @@ export default function Weather({ weatherData }) {
   const { name, localtime } = location; // location info
   const { text, icon } = condition; // sky condition info
 
-  useEffect(() => {
-    console.log(temp_c);
-  }, [weatherData]);
-
   const locIcon = <Entypo name="location-pin" size={20} color="white" />;
   return (
     <View style={styles.container}>
@@ -48,7 +44,7 @@ const styles = StyleSheet.create({
   city: {
     color: "white",
     fontFamily: "pnsb",
-    fontSize: 20,
+    fontSize: 18,
     marginBottom: 8
   },
   date: {
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
   skyCond: {
     color: "white",
     fontFamily: "pnsb",
-    fontSize: 20,
+    fontSize: 17,
     marginBottom: 8
   }
 });

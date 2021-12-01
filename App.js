@@ -1,10 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import Weather from "./components/Weather";
+import SearchBar from "./components/SearchBar";
 
 const fonts = async () => {
   await Font.loadAsync({
@@ -23,7 +30,7 @@ export default function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loaded, setLoaded] = useState(true);
 
-  async function getWeather(cityName) {
+  async function getWeather(cityName = "London") {
     setLoaded(false);
     const API = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=yes`;
     try {
@@ -39,14 +46,15 @@ export default function App() {
       console.error(error);
     }
   }
-
   useEffect(() => {
     getWeather("New York");
   }, []);
-
   if (!loaded) {
     return (
-      <LinearGradient style={styles.loadingCont} colors={["#7383f2", "#a4caf5"]}>
+      <LinearGradient
+        style={styles.loadingCont}
+        colors={["#7060f0", "#9cdbfa"]}
+      >
         <ActivityIndicator color="#6f5dee" size={58} />
       </LinearGradient>
     );
@@ -56,14 +64,16 @@ export default function App() {
 
   if (font) {
     return (
-      <LinearGradient style={styles.container} colors={["#7383f2", "#a4caf5"]}>
-        <View style={styles.header} >
-          <Weather weatherData={weatherData} />
-        </View>
-        <View style={styles.oldWeather}>
-
-        </View>
-        
+      <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
+        <ScrollView>
+          <View style={styles.searchingWeather}>
+            <SearchBar getWeather={getWeather} weatherData={weatherData} />
+          </View>
+          <View style={styles.header}>
+            <Weather weatherData={weatherData} />
+          </View>
+          <View style={styles.oldWeather}></View>
+        </ScrollView>
       </LinearGradient>
     );
   } else {
@@ -78,19 +88,23 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   loadingCont: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+  },
+
+  container: {
+    flex: 1,
+  },
+  searchingWeather: {
+    flex: 0.7,
+    marginBottom: 10
   },
   header: {
     flex: 2,
-    marginTop: 40,
   },
   oldWeather: {
-    flex: 3
-  }
+    flex: 4,
+  },
 });
