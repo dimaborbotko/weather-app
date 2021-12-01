@@ -3,10 +3,12 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 export default function Weather({ weatherData }) {
-  const { current, location } = weatherData;
-  const { temp_c, feelslike_c, condition } = current; // weather info
+  const { location, forecast } = weatherData;
+  const { forecastday } = forecast;
+  const { hour } = forecastday[0];
+  const { condition, feelslike_c, temp_c } = hour[0];
+  const { icon, text } = condition;
   const { name, localtime } = location; // location info
-  const { text, icon } = condition; // sky condition info
 
   const locIcon = <Entypo name="location-pin" size={20} color="white" />;
   return (

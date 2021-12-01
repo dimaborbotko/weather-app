@@ -33,7 +33,7 @@ export default function App() {
 
   async function getWeather(cityName = "London") {
     setLoaded(false);
-    const API = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=yes`;
+    const API = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=1&aqi=no&alerts=no`;
     try {
       const response = await fetch(API);
       if (response.status === 200) {
@@ -60,10 +60,12 @@ export default function App() {
       </LinearGradient>
     );
   } else if (weatherData === null) {
-    return <View></View>;
-  }
-
-  if (font) {
+    return (
+      <View>
+        <Text>Error</Text>
+      </View>
+    );
+  } else if (loaded && font) {
     return (
       <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
         <ScrollView>
@@ -74,7 +76,7 @@ export default function App() {
             <Weather weatherData={weatherData} />
           </View>
           <View style={styles.oldWeather}>
-            <OldWeather weatherData={weatherData}/>
+            <OldWeather weatherData={weatherData} />
           </View>
         </ScrollView>
       </LinearGradient>
@@ -88,6 +90,10 @@ export default function App() {
       />
     );
   }
+
+  // if (font) {
+
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -102,12 +108,12 @@ const styles = StyleSheet.create({
   },
   searchingWeather: {
     flex: 0.7,
-    marginBottom: 10
+    marginBottom: 10,
   },
   header: {
     flex: 2,
   },
   oldWeather: {
-    flex: 4,
+    flex: 3,
   },
 });
