@@ -4,7 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 
 export default function Weather({ weatherData }) {
   const { current, location } = weatherData;
-  const { temp_c, feelslike_c, condition, precip_mm } = current; // weather info
+  const { temp_c, feelslike_c, condition } = current; // weather info
   const { name, localtime } = location; // location info
   const { text, icon } = condition; // sky condition info
 

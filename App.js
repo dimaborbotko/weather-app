@@ -12,6 +12,7 @@ import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import Weather from "./components/Weather";
 import SearchBar from "./components/SearchBar";
+import OldWeather from "./components/OldWeather";
 
 const fonts = async () => {
   await Font.loadAsync({
@@ -72,7 +73,9 @@ export default function App() {
           <View style={styles.header}>
             <Weather weatherData={weatherData} />
           </View>
-          <View style={styles.oldWeather}></View>
+          <View style={styles.oldWeather}>
+            <OldWeather weatherData={weatherData}/>
+          </View>
         </ScrollView>
       </LinearGradient>
     );
