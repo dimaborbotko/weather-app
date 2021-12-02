@@ -26,10 +26,10 @@ const fonts = async () => {
 const API_KEY = "526d4889d65b48cabba160455213011";
 
 export default function App() {
-  const [font, setFont] = useState(false);
-
   const [weatherData, setWeatherData] = useState(null);
   const [loaded, setLoaded] = useState(true);
+
+  const [font, setFont] = useState(false);
 
   async function getWeather(cityName = "London") {
     setLoaded(false);
@@ -50,37 +50,40 @@ export default function App() {
   useEffect(() => {
     getWeather("New York");
   }, []);
-  if (!loaded) {
-    return (
-      <LinearGradient
-        style={styles.loadingCont}
-        colors={["#7060f0", "#9cdbfa"]}
-      >
-        <ActivityIndicator color="#6f5dee" size={58} />
-      </LinearGradient>
-    );
-  } else if (weatherData === null) {
-    return (
-      <View>
-        <Text>Error</Text>
-      </View>
-    );
-  } else if (loaded && font) {
-    return (
-      <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
-        <ScrollView>
-          <View style={styles.searchingWeather}>
-            <SearchBar getWeather={getWeather} weatherData={weatherData} />
-          </View>
-          <View style={styles.header}>
-            <Weather weatherData={weatherData} />
-          </View>
-          <View style={styles.oldWeather}>
-            <OldWeather weatherData={weatherData} />
-          </View>
-        </ScrollView>
-      </LinearGradient>
-    );
+
+  if (font) {
+    if (!loaded) {
+      return (
+        <LinearGradient
+          style={styles.loadingCont}
+          colors={["#7060f0", "#9cdbfa"]}
+        >
+          <ActivityIndicator color="#6f5dee" size={58} />
+        </LinearGradient>
+      );
+    } else if (loaded) {
+      return (
+        <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
+          <ScrollView>
+            <View style={styles.searchingWeather}>
+              <SearchBar getWeather={getWeather} weatherData={weatherData} />
+            </View>
+            <View style={styles.header}>
+              <Weather weatherData={weatherData} />
+            </View>
+            <View style={styles.oldWeather}>
+              <OldWeather weatherData={weatherData} />
+            </View>
+          </ScrollView>
+        </LinearGradient>
+      );
+    } else if (weatherData === null) {
+      return (
+        <View>
+          <Text>Error</Text>
+        </View>
+      );
+    }
   } else {
     return (
       <AppLoading

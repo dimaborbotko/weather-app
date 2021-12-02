@@ -9,7 +9,6 @@ export default function OldWeather({ weatherData }) {
   const { hour } = forecastday[0];
   const { chance_of_rain, uv, condition } = hour[0];
   const { temp_c } = hour[22];
-  const { icon } = condition;
 
   //   const uvIndexDeg = () => {
 
