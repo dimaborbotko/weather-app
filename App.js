@@ -13,6 +13,7 @@ import * as Font from "expo-font";
 import Weather from "./components/Weather";
 import SearchBar from "./components/SearchBar";
 import OldWeather from "./components/OldWeather";
+import HourlyForecast from "./components/HourlyForecast";
 
 const fonts = async () => {
   await Font.loadAsync({
@@ -74,6 +75,9 @@ export default function App() {
             <View style={styles.oldWeather}>
               <OldWeather weatherData={weatherData} />
             </View>
+            <View style={styles.hourlyForecast}>
+              <HourlyForecast weatherData={weatherData} />
+            </View>
           </ScrollView>
         </LinearGradient>
       );
@@ -119,4 +123,7 @@ const styles = StyleSheet.create({
   oldWeather: {
     flex: 3,
   },
+  hourlyForecast: {
+    flex: 4,
+  }
 });
