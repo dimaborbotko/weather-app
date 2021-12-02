@@ -6,9 +6,10 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 export default function OldWeather({ weatherData }) {
   const { forecast, current } = weatherData;
   const { forecastday } = forecast;
-  const { hour } = forecastday[0];
-  const { chance_of_rain, uv, condition } = hour[0];
+  const { day, hour } = forecastday[0];
+  const { daily_chance_of_rain, uv, condition } = day;
   const { temp_c } = hour[22];
+  const { icon } = condition;
 
   //   const uvIndexDeg = () => {
 
@@ -24,7 +25,7 @@ export default function OldWeather({ weatherData }) {
           />
           <View style={styles.precip}>
             <Text style={styles.precipText}>Precipitation</Text>
-            <Text style={styles.precipNum}>{chance_of_rain}%</Text>
+            <Text style={styles.precipNum}>{daily_chance_of_rain}%</Text>
           </View>
 
           <View style={styles.vertLine}></View>
