@@ -2,15 +2,14 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HourlyForecast({ weatherData }) {
-  const { forecast, current } = weatherData;
+  const { forecast } = weatherData;
   const { forecastday } = forecast;
   const { hour } = forecastday[0];
-  // const { chance_of_rain, uv, condition, time, condition } = hour[0];
-  // const { icon } = condition
   const absM = (n) => {
     return Math.abs(hour[n].temp_c);
   };
-  //   let borderL = Math.abs(absM(17)) * 5;
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Hourly</Text>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import ComparisonUv from "../functions/ComparisonUv";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function OldWeather({ weatherData }) {
   const { forecast, current } = weatherData;
@@ -10,8 +10,6 @@ export default function OldWeather({ weatherData }) {
   const { daily_chance_of_rain, uv, condition } = day;
   const { temp_c } = hour[22];
   const { icon } = condition;
-
-  //   const uvIndexDeg = () => {
 
   return (
     <View style={styles.box}>
@@ -30,7 +28,7 @@ export default function OldWeather({ weatherData }) {
 
           <View style={styles.vertLine}></View>
 
-          <MaterialIcons name="wb-sunny" size={30} color="gold" />
+          <Image style={styles.sun} source={require('../assets/113.png')}/>
           <View style={styles.uvIndex}>
             <Text style={styles.uvIndexText}>UV index</Text>
             <ComparisonUv weatherData={weatherData} />
@@ -80,6 +78,12 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.7)",
     borderBottomWidth: 45,
     marginHorizontal: 25,
+  },
+  sun: {
+    marginLeft: -15,
+    marginRight: -7,
+    width: 60,
+    height: 60,
   },
   uvIndex: {
     marginLeft: 10,

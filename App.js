@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -32,12 +31,12 @@ export default function App() {
 
   const [font, setFont] = useState(false);
 
-  async function getWeather(cityName = "London") {
+  async function getWeather(cityName) {
     setLoaded(false);
     const API = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=1&aqi=no&alerts=no`;
     try {
       const response = await fetch(API);
-      if (response.status === 200) {
+      if (response.status == 200) {
         const data = await response.json();
         setWeatherData(data);
       } else {
@@ -45,11 +44,11 @@ export default function App() {
       }
       setLoaded(true);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
   useEffect(() => {
-    getWeather("New York");
+    getWeather('Lviv');
   }, []);
 
   if (font) {
@@ -62,7 +61,18 @@ export default function App() {
           <ActivityIndicator color="#6f5dee" size={58} />
         </LinearGradient>
       );
-    } else if (loaded) {
+    } 
+    else if (weatherData == null) {
+      return (
+        <View style={styles.notFound}>
+          <SearchBar weatherData={weatherData}/>
+          <Text style={styles.textNotFound}>City not found!</Text>
+        </View>
+      );
+    }
+    
+    
+    
       return (
         <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
           <ScrollView>
@@ -81,13 +91,6 @@ export default function App() {
           </ScrollView>
         </LinearGradient>
       );
-    } else if (weatherData === null) {
-      return (
-        <View>
-          <Text>Error</Text>
-        </View>
-      );
-    }
   } else {
     return (
       <AppLoading
@@ -125,5 +128,15 @@ const styles = StyleSheet.create({
   },
   hourlyForecast: {
     flex: 4,
+  },
+  notFound: {
+    backgroundColor: 'white',
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  textNotFound: {
+    color: "white",
+    fontFamily: "pnb",
+    fontSize: 14,
   }
 });
