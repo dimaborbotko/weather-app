@@ -48,7 +48,7 @@ export default function App() {
     }
   }
   useEffect(() => {
-    getWeather('Lviv');
+    getWeather("Lviv");
   }, []);
 
   if (font) {
@@ -61,36 +61,33 @@ export default function App() {
           <ActivityIndicator color="#6f5dee" size={58} />
         </LinearGradient>
       );
-    } 
-    else if (weatherData == null) {
+    } else if (weatherData == null) {
       return (
         <View style={styles.notFound}>
-          <SearchBar weatherData={weatherData}/>
+          <SearchBar weatherData={weatherData} />
           <Text style={styles.textNotFound}>City not found!</Text>
         </View>
       );
     }
-    
-    
-    
-      return (
-        <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
-          <ScrollView>
-            <View style={styles.searchingWeather}>
-              <SearchBar getWeather={getWeather} weatherData={weatherData} />
-            </View>
-            <View style={styles.header}>
-              <Weather weatherData={weatherData} />
-            </View>
-            <View style={styles.oldWeather}>
-              <OldWeather weatherData={weatherData} />
-            </View>
-            <View style={styles.hourlyForecast}>
-              <HourlyForecast weatherData={weatherData} />
-            </View>
-          </ScrollView>
-        </LinearGradient>
-      );
+
+    return (
+      <LinearGradient style={styles.container} colors={["7060f0", "#9cdbfa"]}>
+        <View style={styles.searchingWeather}>
+          <SearchBar getWeather={getWeather} weatherData={weatherData} />
+        </View>
+        <View style={styles.header}>
+          <Weather weatherData={weatherData} />
+        </View>
+        <View style={styles.secondBlock}>
+          <View style={styles.oldWeather}>
+            <OldWeather weatherData={weatherData} />
+          </View>
+          <View style={styles.hourlyForecast}>
+            <HourlyForecast weatherData={weatherData} />
+          </View>
+        </View>
+      </LinearGradient>
+    );
   } else {
     return (
       <AppLoading
@@ -123,20 +120,23 @@ const styles = StyleSheet.create({
   header: {
     flex: 2,
   },
+  secondBlock: {
+    flex: 4
+  },
   oldWeather: {
-    flex: 3,
+    flex: 1.5,
   },
   hourlyForecast: {
-    flex: 4,
+    flex: 2.5,
   },
   notFound: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   textNotFound: {
     color: "white",
     fontFamily: "pnb",
     fontSize: 14,
-  }
+  },
 });

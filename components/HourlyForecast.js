@@ -9,7 +9,6 @@ export default function HourlyForecast({ weatherData }) {
     return Math.abs(hour[n].temp_c);
   };
 
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Hourly</Text>
@@ -31,7 +30,7 @@ export default function HourlyForecast({ weatherData }) {
             <View
               style={{
                 ...styles.borderLW,
-                borderBottomWidth: Math.abs(absM(8)) * 5,
+                borderBottomWidth: Math.abs(absM(8)) * 2,
               }}
             ></View>
           </View>
@@ -51,7 +50,7 @@ export default function HourlyForecast({ weatherData }) {
             <View
               style={{
                 ...styles.borderLW,
-                borderBottomWidth: Math.abs(absM(11)) * 5,
+                borderBottomWidth: Math.abs(absM(11)) * 2,
               }}
             ></View>
           </View>
@@ -71,7 +70,7 @@ export default function HourlyForecast({ weatherData }) {
             <View
               style={{
                 ...styles.borderLW,
-                borderBottomWidth: Math.abs(absM(14)) * 5,
+                borderBottomWidth: Math.abs(absM(14)) * 2,
               }}
             ></View>
           </View>
@@ -91,7 +90,7 @@ export default function HourlyForecast({ weatherData }) {
             <View
               style={{
                 ...styles.borderLW,
-                borderBottomWidth: Math.abs(absM(17)) * 5,
+                borderBottomWidth: Math.abs(absM(17)) * 2,
               }}
             ></View>
           </View>
@@ -113,7 +112,6 @@ export default function HourlyForecast({ weatherData }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 20,
   },
   header: {
     marginLeft: 20,
@@ -126,10 +124,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderRadius: 15,
     backgroundColor: "rgba(255,255,255,0.3)",
+    height: '85%'
   },
   main: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "flex-end",
+    height: '85%'
   },
   hourCondition: {
     alignItems: "center",
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
   },
   skyCondition: {
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 1,
   },
   flexDirection: {
     flex: 1,
@@ -159,22 +160,24 @@ const styles = StyleSheet.create({
     marginTop: -3,
   },
   grafikTemt: {
-    marginTop: 30,
+    marginTop: 10,
   },
   temtHour: {
     color: "white",
     fontFamily: "pnsb",
     fontSize: 16,
+    alignSelf: "flex-start"
   },
   borderLW: {
     borderColor: "white",
     borderWidth: 3,
     borderRadius: 5,
+    maxHeight: 100
   },
   boxText: {
     width: "100%",
     alignItems: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   btnText: {
     alignItems: "center",
@@ -185,6 +188,6 @@ const styles = StyleSheet.create({
     fontFamily: "pnsb",
     fontSize: 16,
     backgroundColor: "rgba(255,255,255,0.2)",
-    borderRadius: 10
+    borderRadius: 10,
   },
 });

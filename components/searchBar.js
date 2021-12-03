@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   search: {
-    marginRight: 5,
+    marginHorizontal: 10
   },
   boxModal: {
     flex: 1,

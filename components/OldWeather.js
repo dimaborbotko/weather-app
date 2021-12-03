@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   precip: {
     marginLeft: 5,
-    paddingVertical: 40,
+    paddingVertical: 30,
   },
 
   vertLine: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   uvIndex: {
     marginLeft: 10,
-    paddingVertical: 40,
+    paddingVertical: 30,
   },
   precipNum: {
     color: "white",
